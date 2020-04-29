@@ -6,7 +6,8 @@ const wait = require('./wait');
 async function run() {
   try { 
     const ms = core.getInput('milliseconds');
-    console.log(`Waiting ${ms} milliseconds ...`)
+    console.log(`Waiting ${ms} milliseconds ...`);
+    console.log('env variables are below:');
     console.log(process.env);
 
     core.debug((new Date()).toTimeString())
