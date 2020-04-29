@@ -1,5 +1,4 @@
-# check in node modules so we don't need to build
-# node_modules/
+node_modules/
 
 # Editors
 .vscode
