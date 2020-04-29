@@ -43,7 +43,7 @@ async function run() {
     });
 
     // Slack returns 200 even when failed
-    if (data.ok !== true) {
+    if (data !== 'ok') {
       throw new Error(JSON.stringify(data));
     }
 
