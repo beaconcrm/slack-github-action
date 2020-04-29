@@ -8,6 +8,8 @@ async function run() {
     const ms = core.getInput('milliseconds');
     console.log(`Waiting ${ms} milliseconds ...`)
 
+    console.log(process.env);
+
     core.debug((new Date()).toTimeString())
     await wait(parseInt(ms));
     core.debug((new Date()).toTimeString())
