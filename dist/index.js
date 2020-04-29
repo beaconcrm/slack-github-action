@@ -2101,7 +2101,6 @@ async function run() {
             color: '#2eb886',
             fields: [
               {
-                // title: 'Number of customers',
                 value: message,
               },
             ],
@@ -2118,19 +2117,6 @@ async function run() {
     if (data !== 'ok') {
       throw new Error(JSON.stringify(data));
     }
-
-
-    // Success: cjhoughton's workflow (workflow) in beacon-apps/csv-service (development)
-    // - Merged in f/row-number-max-50k (pull request #152) (1576eb3)
-
-    // const ms = core.getInput('milliseconds');
-    // console.log(`Waiting ${ms} milliseconds ...`);
-    // console.log('env variables are below:');
-    // console.log(process.env);
-
-    // core.debug((new Date()).toTimeString());
-    // await wait(parseInt(ms));
-    // core.debug((new Date()).toTimeString());
 
     core.setOutput('time', new Date().toTimeString());
   } catch (error) {
