@@ -18,7 +18,10 @@ async function run() {
     const workflowUrl = `${repoUrl}/actions/runs/${workflowId}`;
     const branchUrl = `${repoUrl}/tree/${branch}`;
 
-    const message = `Success: ${actor}'s <${workflowUrl}|workflow> in <${repoUrl}|${repo}> (<${branchUrl}|${branch}>)`;
+    const status = core.getInput('status');
+
+    const message = `${status}: ${actor}'s <${workflowUrl}|workflow> in <${repoUrl}|${repo}> (<${branchUrl}|${branch}>)`;
+
 
     const { data } = await axios({
       method: 'post',
@@ -28,7 +31,7 @@ async function run() {
           {
             author_icon: `https://github.com/${actor}.png`,
             author_name: actor,
-            color: '#2eb886',
+            color: status === 'Success' ? '#2eb886' : '#f44336',
             fields: [
               {
                 value: message,
