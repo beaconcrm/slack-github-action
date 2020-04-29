@@ -2077,6 +2077,8 @@ const axios = __webpack_require__(295);
 // most @actions toolkit packages have async methods
 async function run() {
   try {
+    const status = core.getInput('status');
+    const webhookUrl = core.getInput('slack_webhook_url');
 
     const actor = process.env.GITHUB_ACTOR;
     const repo = process.env.GITHUB_REPOSITORY;
@@ -2088,16 +2090,12 @@ async function run() {
     const workflowUrl = `${repoUrl}/actions/runs/${workflowId}`;
     const branchUrl = `${repoUrl}/tree/${branch}`;
 
-    const status = core.getInput('status');
-
-    console.log(status);
-
     const message = `${status}: ${actor}'s <${workflowUrl}|workflow> in <${repoUrl}|${repo}> (<${branchUrl}|${branch}>)`;
 
 
     const { data } = await axios({
       method: 'post',
-      url: process.env.SLACK_WEBHOOK_URL,
+      url: webhookUrl,
       data: {
         attachments: [
           {
