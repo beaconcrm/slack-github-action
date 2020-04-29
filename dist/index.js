@@ -2096,6 +2096,8 @@ async function run() {
       data: {
         attachments: [
           {
+            author_icon: `https://github.com/${actor}.png`,
+            author_name: actor,
             color: '#2eb886',
             fields: [
               {
