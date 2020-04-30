@@ -2072,13 +2072,15 @@ __webpack_require__(86).config();
 const _ = __webpack_require__(778);
 const core = __webpack_require__(68);
 const axios = __webpack_require__(295);
+const config = __webpack_require__(680);
 
 
 // most @actions toolkit packages have async methods
 async function run() {
   try {
     const status = core.getInput('status');
-    const webhookUrl = core.getInput('slack_webhook_url');
+
+    const { webhookUrl } = config.slack;
 
     const actor = process.env.GITHUB_ACTOR;
     const repo = process.env.GITHUB_REPOSITORY;
@@ -2269,6 +2271,21 @@ function escapeProperty(s) {
 /***/ (function(module) {
 
 module.exports = require("util");
+
+/***/ }),
+
+/***/ 680:
+/***/ (function(module) {
+
+
+module.exports = {
+  slack: {
+    // deliberately hardcoded, so we don't have to add the webhook URL in every repo
+    // it's not really a security risk all it can do is post messages
+    webhookUrl: 'https://hooks.slack.com/services/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',
+  },
+};
+
 
 /***/ }),
 
