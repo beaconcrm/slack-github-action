@@ -11,6 +11,7 @@ Add the following at the end of your deployment build workflow:
 - uses: beaconcrm/slack-github-action@master
   with:
     status: ${{ job.status }}
+    slack_webhook_url: ${{ secrets.SLACK_WEBHOOK_URL }}
   if: always() # Run on fail/cancelled too
 ```
 

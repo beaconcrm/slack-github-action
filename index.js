@@ -2,7 +2,6 @@ require('dotenv').config();
 const _ = require('lodash');
 const core = require('@actions/core');
 const axios = require('axios');
-const config = require('./config');
 
 
 // most @actions toolkit packages have async methods
@@ -10,7 +9,7 @@ async function run() {
   try {
     const status = core.getInput('status');
 
-    const { webhookUrl } = config.slack;
+    const webhookUrl = core.getInput('slack_webhook_url');
 
     const actor = process.env.GITHUB_ACTOR;
     const repo = process.env.GITHUB_REPOSITORY;

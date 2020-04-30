@@ -4,6 +4,9 @@ inputs:
   status:
     description: Specify success or failure or cancelled or custom.
     required: true
+  slack_webhook_url:
+    description: Webhook URL to send the Slack message to
+    required: true
 outputs:
   time: # output will be available to future steps 
     description: 'The message to output'

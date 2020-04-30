@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "build": "ncc build index.js"
+    "build": "yarn lint && ncc build index.js"
   },
   "repository": {
     "type": "git",
