@@ -1,4 +1,4 @@
-# Slack Githu Action
+# Slack Github Action
 
 Send a notification to the #builds channel from a Github action. Designed for notifications of successful or failed builds Slack.
 
