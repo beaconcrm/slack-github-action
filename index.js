@@ -14,6 +14,9 @@ async function run() {
     const actor = process.env.GITHUB_ACTOR;
     const repo = process.env.GITHUB_REPOSITORY;
     const ref = process.env.GITHUB_REF;
+
+    console.log(process.env);
+
     const branch = _.replace(ref, 'refs/heads/', '');
 
     const workflowId = process.env.GITHUB_RUN_ID;
