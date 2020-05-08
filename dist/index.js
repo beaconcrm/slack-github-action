@@ -2081,7 +2081,9 @@ async function run() {
 
     const webhookUrl = core.getInput('slack_webhook_url');
 
-    if (!_.isString(webhookUrl)) {
+    console.log('webhook url', webhookUrl);
+
+    if (!webhookUrl) {
       throw new Error('slack_webhook_url input not specified. Did you remember to add it as a secret in your Github repo?');
     }
 
