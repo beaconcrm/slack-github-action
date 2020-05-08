@@ -58,6 +58,7 @@ async function run() {
 
     core.setOutput('time', new Date().toTimeString());
   } catch (error) {
+    console.log(error);
     core.setFailed(error.message);
   }
 }
