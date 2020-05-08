@@ -11,8 +11,6 @@ async function run() {
 
     const webhookUrl = core.getInput('slack_webhook_url');
 
-    console.log('webhook url', webhookUrl);
-
     if (!webhookUrl) {
       throw new Error('slack_webhook_url input not specified. Did you remember to add it as a secret in your Github repo?');
     }
@@ -61,7 +59,6 @@ async function run() {
 
     core.setOutput('time', new Date().toTimeString());
   } catch (error) {
-    console.log(error);
     core.setFailed(error.message);
   }
 }
