@@ -2081,12 +2081,13 @@ async function run() {
 
     const webhookUrl = core.getInput('slack_webhook_url');
 
+    if (!_.isString(webhookUrl)) {
+      throw new Error('slack_webhook_url input not specified. Did you remember to add it as a secret in your Github repo?');
+    }
+
     const actor = process.env.GITHUB_ACTOR;
     const repo = process.env.GITHUB_REPOSITORY;
     const ref = process.env.GITHUB_REF;
-
-    console.log(process.env);
-
     const branch = _.replace(ref, 'refs/heads/', '');
 
     const workflowId = process.env.GITHUB_RUN_ID;
