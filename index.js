@@ -1,5 +1,6 @@
 require('dotenv').config();
 const _ = require('lodash');
+const properCase = require('mout/string/properCase');
 const core = require('@actions/core');
 const axios = require('axios');
 
@@ -7,7 +8,7 @@ const axios = require('axios');
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const status = core.getInput('status');
+    const status = _.toLower(core.getInput('status'));
 
     const webhookUrl = core.getInput('slack_webhook_url');
 
@@ -26,7 +27,7 @@ async function run() {
     const workflowUrl = `${repoUrl}/actions/runs/${workflowId}`;
     const branchUrl = `${repoUrl}/tree/${branch}`;
 
-    const message = `${status}: ${actor}'s <${workflowUrl}|workflow> in <${repoUrl}|${repo}> (<${branchUrl}|${branch}>)`;
+    const message = `${properCase(status)}: ${actor}'s <${workflowUrl}|workflow> in <${repoUrl}|${repo}> (<${branchUrl}|${branch}>)`;
 
 
     const { data } = await axios({
@@ -37,7 +38,7 @@ async function run() {
           {
             author_icon: `https://github.com/${actor}.png`,
             author_name: actor,
-            color: status === 'Success' ? '#2eb886' : '#f44336',
+            color: status === 'success' ? '#2eb886' : '#f44336',
             fields: [
               {
                 value: message,

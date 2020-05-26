@@ -2070,6 +2070,7 @@ module.exports = function dispatchRequest(config) {
 
 __webpack_require__(86).config();
 const _ = __webpack_require__(778);
+const properCase = __webpack_require__(662);
 const core = __webpack_require__(68);
 const axios = __webpack_require__(295);
 
@@ -2077,7 +2078,7 @@ const axios = __webpack_require__(295);
 // most @actions toolkit packages have async methods
 async function run() {
   try {
-    const status = core.getInput('status');
+    const status = _.toLower(core.getInput('status'));
 
     const webhookUrl = core.getInput('slack_webhook_url');
 
@@ -2096,7 +2097,7 @@ async function run() {
     const workflowUrl = `${repoUrl}/actions/runs/${workflowId}`;
     const branchUrl = `${repoUrl}/tree/${branch}`;
 
-    const message = `${status}: ${actor}'s <${workflowUrl}|workflow> in <${repoUrl}|${repo}> (<${branchUrl}|${branch}>)`;
+    const message = `${properCase(status)}: ${actor}'s <${workflowUrl}|workflow> in <${repoUrl}|${repo}> (<${branchUrl}|${branch}>)`;
 
 
     const { data } = await axios({
@@ -2107,7 +2108,7 @@ async function run() {
           {
             author_icon: `https://github.com/${actor}.png`,
             author_name: actor,
-            color: status === 'Success' ? '#2eb886' : '#f44336',
+            color: status === 'success' ? '#2eb886' : '#f44336',
             fields: [
               {
                 value: message,
@@ -2271,10 +2272,50 @@ function escapeProperty(s) {
 
 /***/ }),
 
+/***/ 662:
+/***/ (function(module, __unusedexports, __webpack_require__) {
+
+var toString = __webpack_require__(699);
+var lowerCase = __webpack_require__(856);
+var upperCase = __webpack_require__(927);
+    /**
+     * UPPERCASE first char of each word.
+     */
+    function properCase(str){
+        str = toString(str);
+        return lowerCase(str).replace(/^\w|\s\w/g, upperCase);
+    }
+
+    module.exports = properCase;
+
+
+
+/***/ }),
+
 /***/ 669:
 /***/ (function(module) {
 
 module.exports = require("util");
+
+/***/ }),
+
+/***/ 699:
+/***/ (function(module) {
+
+
+
+    /**
+     * Typecast a value to a String, using an empty string value for null or
+     * undefined.
+     */
+    function toString(val){
+        return val == null ? '' : val.toString();
+    }
+
+    module.exports = toString;
+
+
+
 
 /***/ }),
 
@@ -20312,6 +20353,24 @@ module.exports = CancelToken;
 
 /***/ }),
 
+/***/ 856:
+/***/ (function(module, __unusedexports, __webpack_require__) {
+
+var toString = __webpack_require__(699);
+    /**
+     * "Safer" String.toLowerCase()
+     */
+    function lowerCase(str){
+        str = toString(str);
+        return str.toLowerCase();
+    }
+
+    module.exports = lowerCase;
+
+
+
+/***/ }),
+
 /***/ 867:
 /***/ (function(module) {
 
@@ -21021,6 +21080,23 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 });
 
 module.exports = Axios;
+
+
+/***/ }),
+
+/***/ 927:
+/***/ (function(module, __unusedexports, __webpack_require__) {
+
+var toString = __webpack_require__(699);
+    /**
+     * "Safer" String.toUpperCase()
+     */
+    function upperCase(str){
+        str = toString(str);
+        return str.toUpperCase();
+    }
+    module.exports = upperCase;
+
 
 
 /***/ })
