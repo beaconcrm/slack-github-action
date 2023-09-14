@@ -19,7 +19,7 @@
     "axios": "^0.19.2",
     "dotenv": "^8.2.0",
     "lodash": "^4.17.15",
-    "mout": "^1.2.2"
+    "mout": "^1.2.4"
   },
   "devDependencies": {
     "@beacon/eslint-config-node": "^1.2.3",
