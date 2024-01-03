@@ -4,7 +4,6 @@ const properCase = require('mout/string/properCase');
 const core = require('@actions/core');
 const axios = require('axios');
 
-
 // most @actions toolkit packages have async methods
 async function run() {
   try {
@@ -28,7 +27,6 @@ async function run() {
     const branchUrl = `${repoUrl}/tree/${branch}`;
 
     const message = `${properCase(status)}: ${actor}'s <${workflowUrl}|workflow> in <${repoUrl}|${repo}> (<${branchUrl}|${branch}>)`;
-
 
     const { data } = await axios({
       method: 'post',
