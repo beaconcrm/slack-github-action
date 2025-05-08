@@ -21,7 +21,7 @@
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@beacon/eslint-config-node": "^1.2.6",
-    "eslint": "^8.56.0"
+    "@beacon/eslint-config-node": "^2.0.0",
+    "eslint": "^9.26.0"
   }
 }
