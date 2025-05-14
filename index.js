@@ -1,8 +1,15 @@
 require('dotenv').config();
 const _ = require('lodash');
-const properCase = require('mout/string/properCase');
 const core = require('@actions/core');
 const axios = require('axios');
+
+function properCase(str) {
+  return _.replace(
+    _.toLower(str),
+    /^\w|\s\w/g,
+    (letter) => _.toUpper(letter)
+  );
+}
 
 // most @actions toolkit packages have async methods
 async function run() {
