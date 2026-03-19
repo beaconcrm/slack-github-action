@@ -1,6 +1,5 @@
-require('dotenv').config();
+require('dotenv').config({ quiet: true });
 const _ = require('lodash');
-const core = require('@actions/core');
 const axios = require('axios');
 
 function properCase(str) {
@@ -13,6 +12,7 @@ function properCase(str) {
 
 // most @actions toolkit packages have async methods
 async function run() {
+  const core = await import('@actions/core');
   try {
     const status = _.toLower(core.getInput('status'));
 

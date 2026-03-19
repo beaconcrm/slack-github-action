@@ -18,3 +18,5 @@ Add the following at the end of your deployment build workflow:
 ## Development
 
 Make your changes, and then run `yarn build` to package the `dist/index.js` file, which is what is used at runtime by consumers.
+
+To test the action locally, copy `.example.env` to `.env`, set a real `INPUT_SLACK_WEBHOOK_URL`, then run `yarn dev-test`.

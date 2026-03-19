@@ -4,9 +4,6 @@ updates:
     directory: "/"
     schedule:
       interval: "monthly"
-    assignees:
-      - "haydnba"
-      - "samcorneybeacon"
     groups:
       security-updates-minor-and-patch:
         applies-to: "security-updates"
