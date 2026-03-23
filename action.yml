@@ -1,5 +1,5 @@
-name: 'Send slack notification'
-description: 'Send a Slack notification of a successful build'
+name: "Send slack notification"
+description: "Send a Slack notification of a successful build"
 inputs:
   status:
     description: Specify success or failure or cancelled or custom.
@@ -8,8 +8,8 @@ inputs:
     description: Webhook URL to send the Slack message to
     required: true
 outputs:
-  time: # output will be available to future steps 
-    description: 'The message to output'
+  time: # output will be available to future steps
+    description: "The message to output"
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: "node24"
+  main: "dist/index.js"
