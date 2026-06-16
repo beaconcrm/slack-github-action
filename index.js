@@ -15,8 +15,8 @@ async function run() {
   const core = await import('@actions/core');
   try {
     const status = _.toLower(core.getInput('status'));
-
     const webhookUrl = core.getInput('slack_webhook_url');
+    const text = core.getInput('text');
 
     if (!webhookUrl) {
       throw new Error('slack_webhook_url input not specified. Did you remember to add it as a secret in your Github repo?');
@@ -33,7 +33,10 @@ async function run() {
     const workflowUrl = `${repoUrl}/actions/runs/${workflowId}`;
     const branchUrl = `${repoUrl}/tree/${branch}`;
 
-    const message = `${properCase(status)}: ${actor}'s <${workflowUrl}|workflow> in <${repoUrl}|${repo}> (<${branchUrl}|${branch}>)`;
+    const message = [
+      `${properCase(status)}: ${actor}'s <${workflowUrl}|workflow> in <${repoUrl}|${repo}> (<${branchUrl}|${branch}>)`,
+      ...(text ? [text] : []),
+    ].join('\n');
 
     const { data } = await axios({
       method: 'post',
